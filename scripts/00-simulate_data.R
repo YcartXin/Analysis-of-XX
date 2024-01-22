@@ -7,7 +7,6 @@
 # Contact: ycart.yang@mail.utoronto.ca
 # License: MIT
 # Pre-requisites: None
-# Any other information needed? [...UPDATE THIS...]
 
 
 #### Workspace setup ####

@@ -1,6 +1,6 @@
 #### Preamble ####
 # Purpose: Simulates 2019 data of Person in Crisis (PIC) calls for service 
-# attended (CFSA) that includes event types of Suicide-related, Person In 
+# attended (CFSA) that includes event types of Suicide-related, Person in 
 # Crisis, and Overdose.
 # Author: Tracy yang
 # Date: 23 January 2024
@@ -20,7 +20,7 @@ set.seed(11)
 year <- c(2019, 2020, 2021)
 month <- c("Janaury", "February", "March", "April", "May", "June", "July", 
            "August", "September", "October", "November", "December")
-event <- c("Suicide Related", "Person In Crisis", "Overdose")
+event <- c("Suicide-related", "Person in Crisis", "Overdose")
 
 simulated_toronto <- tibble(year = rep(year, each = 4800), 
             month = rep(month, each = 400, times = 3), 

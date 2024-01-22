@@ -1,13 +1,12 @@
 ---
-title: "My title"
+title: "Analysis of the Effect of COVID-19 Lockdown on Attempted Suicide Calls for Service Attended (CFSA) in Toronto"
 subtitle: "My subtitle if needed"
 author: 
-  - First author
-  - Another author
-thanks: "Code and data are available at: LINK."
+  - Tracy Yang
+thanks: "Code and data are available at: https://github.com/YcartXin/Effect-of-COVID-Lockdown-on-Attempted-Suicide-CFSA-Analysis."
 date: today
 date-format: long
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: "With the closing of non-essential businesses and the increased social restrictions of the COVID-19 pandemic from March 2020 in Toronto, many Canadian's mental health were reported to have been affected negatively. Second sentence. Third sentence. Fourth sentence."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -22,14 +21,15 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
-
 # Introduction
 
-You can and should cross-reference sections and sub-sections. 
+The effects of the COVID-19 pandemic began to reach the citizens of Toronto throughout the month of March in 2020. From the NBA season suspension on March 11th to the Ontario declaration of state of emergency by Doug Ford on the 17th, all gathering activities started to shut down to mitigate the impacts of the virus on the city (CityNews XX). This is soon followed by the mandated closure of non-essential businesses and the law to ensure a 2 meter distance between people in public places punishable by fines (CityNews XX). As individuals naturally crave in-person contact and outdoor activities, many studies have reported psychological distress relating to anxiety, depression, or general lack of interest in anything throughout the progression of the lock-down (Library of Medicine). In conjunction with psychological distress, it is important to analyse whether the lock-down also correlates with attempted suicide in order to better understand the extent that of not only an involuntary secluded lifestyle, but also other effects of COVID-19 such as unemployment and the death of a family member that can negatively impact an individual's well-being.
+
+Knowing the correlation between the lock-down and attempted suicide calls for service attended can also help policy makers know how to better prepare and provide mental health support during a nation-wide crisis. A survey conducted on COVID-19 and mental health (SCMH) have shown that one in four Canadians aged 18 and older indicates symptoms of depression, anxiety, and post-traumatic disorder (PTSD) (The Daily). Furthermore, between fall 2020 and spring 2021, symptoms of mental health disorder increased (The Daily). On the other hand, there are studies that reported no significant difference in suicide ideation in Canada between 2019 and 2020 (HPCDP). These research results stem from complicated factors and are time-limited in their analysis. The relation between the COVID-19 lock-down and mental health consequences can be further explored with an analysis that emphasizes the lock-down months between March 2020 to March 2021 as well as looking at the more long-term mental health fluctuations. 
+
+Among present research there is a lack of analysis in the correlation between the lock-down to attempted suicide calls for service attended focusing in Toronto. This paper will estimate the monthly average attempted suicide CFSA in Toronto and compare between years, and more specifically, the lock-down period.You can and should cross-reference sections and sub-sections.
 
 The remainder of this paper is structured as follows. @sec-data....
-
-
 
 # Data {#sec-data}
 
@@ -70,9 +70,7 @@ analysis_data |>
        y = "Wing length (mm)")
 ```
 
-Talk way more about it. 
-
-
+Talk way more about it.
 
 # Model
 
@@ -82,8 +80,9 @@ Here we briefly describe the Bayesian analysis model used to investigate... Back
 
 ## Model set-up
 
-Define $y_i$ as the number of seconds that the plane remained aloft. Then $\beta_i$ is the wing width and $\gamma_i$ is the wing length, both measured in millimeters.  
+Define $y_i$ as the number of seconds that the plane remained aloft. Then $\beta_i$ is the wing width and $\gamma_i$ is the wing length, both measured in millimeters.
 
+```{=tex}
 \begin{align} 
 y_i|\mu_i, \sigma &\sim \mbox{Normal}(\mu_i, \sigma) \\
 \mu_i &= \alpha + \beta_i + \gamma_i\\
@@ -92,16 +91,14 @@ y_i|\mu_i, \sigma &\sim \mbox{Normal}(\mu_i, \sigma) \\
 \gamma &\sim \mbox{Normal}(0, 2.5) \\
 \sigma &\sim \mbox{Exponential}(1)
 \end{align}
-
+```
 We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use the default priors from `rstanarm`.
-
 
 ### Model justification
 
 We expect a positive relationship between the size of the wings and time spent aloft. In particular...
 
 We can use maths by including latex between dollar signs, for instance $\theta$.
-
 
 # Results
 
@@ -135,14 +132,11 @@ modelsummary::modelsummary(
 )
 ```
 
-
-
-
 # Discussion
 
 ## First discussion point {#sec-first-point}
 
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
+If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this.
 
 ## Second discussion point
 
@@ -156,8 +150,7 @@ Weaknesses and next steps should also be included.
 
 \appendix
 
-# Appendix {-}
-
+# Appendix {.unnumbered}
 
 # Additional data details
 
@@ -167,7 +160,7 @@ Weaknesses and next steps should also be included.
 
 In @fig-ppcheckandposteriorvsprior-1 we implement a posterior predictive check. This shows...
 
-In @fig-ppcheckandposteriorvsprior-2 we compare the posterior with the prior. This shows... 
+In @fig-ppcheckandposteriorvsprior-2 we compare the posterior with the prior. This shows...
 
 ```{r}
 #| eval: true
@@ -211,11 +204,6 @@ plot(first_model, "trace")
 plot(first_model, "rhat")
 ```
 
-
-
 \newpage
 
-
 # References
-
-

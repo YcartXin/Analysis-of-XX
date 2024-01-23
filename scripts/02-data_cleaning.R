@@ -28,6 +28,9 @@ toronto_cfsa <- toronto_cfsa |>
     event_month != "January" & event_month != "February") | (
       event_year == 2021 & (
         event_month == "January" | event_month == "February"))), 1, 0))
+# Making date variable to differentiate months between different years
+toronto_cfsa$event_month <- match(toronto_cfsa$event_month, month.name)
+toronto_cfsa$date <- make_date(toronto_cfsa$event_year, toronto_cfsa$event_month)
 
 
 #### Save data ####

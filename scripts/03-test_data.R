@@ -32,4 +32,6 @@ toronto_cfsa$occurrence_created |> unique() == c("No", "Yes")
 ## Test lock_down ##
 toronto_cfsa$lock_down |> unique() == c(0, 1)
 
+## Test date ##
+toronto_cfsa$date |> class() == "Date"
 

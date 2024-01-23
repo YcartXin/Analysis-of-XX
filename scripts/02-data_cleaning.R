@@ -1,44 +1,33 @@
 #### Preamble ####
-# Purpose: Cleans the raw plane data recorded by two observers..... [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 6 April 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Cleans the raw person in crisis calls for service attended data 
+# recorded and published by the Toronto Police Service on Open Data Toronto.
+# Author: Tracy Yang
+# Date: 23rd Janaury 2024
+# Contact: ycart.yang@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
+# Pre-requisites: 01-download_data.R
 
 #### Workspace setup ####
 library(tidyverse)
+library(janitor)
+
 
 #### Clean data ####
-raw_data <- read_csv("inputs/data/plane_data.csv")
+raw <- read_csv("inputs/data/raw_toronto_cfsa.csv")
 
-cleaned_data <-
-  raw_data |>
-  janitor::clean_names() |>
-  select(wing_width_mm, wing_length_mm, flying_time_sec_first_timer) |>
-  filter(wing_width_mm != "caw") |>
-  mutate(
-    flying_time_sec_first_timer = if_else(flying_time_sec_first_timer == "1,35",
-                                   "1.35",
-                                   flying_time_sec_first_timer)
-  ) |>
-  mutate(wing_width_mm = if_else(wing_width_mm == "490",
-                                 "49",
-                                 wing_width_mm)) |>
-  mutate(wing_width_mm = if_else(wing_width_mm == "6",
-                                 "60",
-                                 wing_width_mm)) |>
-  mutate(
-    wing_width_mm = as.numeric(wing_width_mm),
-    wing_length_mm = as.numeric(wing_length_mm),
-    flying_time_sec_first_timer = as.numeric(flying_time_sec_first_timer)
-  ) |>
-  rename(flying_time = flying_time_sec_first_timer,
-         width = wing_width_mm,
-         length = wing_length_mm
-         ) |> 
-  tidyr::drop_na()
+## Trimming data ##
+clean_toronto_cfsa <- raw |> clean_names() |> 
+  select(event_year, event_month, event_type) |> 
+  filter(event_year > 2018 & event_year < 2022)
+
+## Adding Variables ##
+# Need indicator variable to specify lock_down months
+clean_toronto_cfsa <- clean_toronto_cfsa |>
+  mutate(lock_down = ifelse((event_year == 2020 & (
+    event_month != "January" & event_month != "February") | (
+      event_year == 2021 & (
+        event_month == "January" | event_month == "February"))), 1, 0))
+
 
 #### Save data ####
-write_csv(cleaned_data, "outputs/data/analysis_data.csv")
+write_csv(clean_toronto_cfsa, "outputs/data/toronto_cfsa")

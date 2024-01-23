@@ -13,18 +13,23 @@ library(tidyverse)
 
 #### Test data ####
 ## Test event_type##
-toronto_cfsa$event_type |> unique() == c("Suicide-related", "Overdose", "Person in Crisis")
-toronto_cfsa$event_type |> unique() |> length() == 3
+toronto_cfsa$event_type |> unique() == c("Suicide-related")
+toronto_cfsa$event_type |> unique() |> length() == 1
 
 ## Test event_month ##
 toronto_cfsa$event_month |> unique() |> length() == 12
 toronto_cfsa$event_month |> class() == "character"
 
-## Test event_year##
+## Test event_year ##
 toronto_cfsa$event_year |> is.numeric()
 toronto_cfsa$event_year |> min() == 2019
 toronto_cfsa$event_year |> max() == 2021
 
+## Test occurrence_created ##
+toronto_cfsa$occurrence_created |> is.character()
+toronto_cfsa$occurrence_created |> unique() == c("No", "Yes")
+
 ## Test lock_down ##
 toronto_cfsa$lock_down |> unique() == c(0, 1)
+
 

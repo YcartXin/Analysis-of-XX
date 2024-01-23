@@ -18,20 +18,31 @@ bibliography: references.bib
 #| message: false
 
 library(tidyverse)
-library(palmerpenguins)
+library(palmerpenguins) XX
 ```
 
 # Introduction
 
-The effects of the COVID-19 pandemic began to reach the citizens of Toronto throughout the month of March in 2020. From the NBA season suspension on March 11th to the Ontario declaration of state of emergency by Doug Ford on the 17th, all gathering activities started to shut down to mitigate the impacts of the virus on the city (CityNews XX). This is soon followed by the mandated closure of non-essential businesses and the law to ensure a 2 meter distance between people in public places punishable by fines (CityNews XX). As individuals naturally crave in-person contact and outdoor activities, many studies have reported psychological distress relating to anxiety, depression, or general lack of interest in anything throughout the progression of the lock-down (Library of Medicine). In conjunction with psychological distress, it is important to analyse whether the lock-down also correlates with attempted suicide in order to better understand the extent that of not only an involuntary secluded lifestyle, but also other effects of COVID-19 such as unemployment and the death of a family member that can negatively impact an individual's well-being.
+The effects of the COVID-19 pandemic began to reach the citizens of Toronto throughout the month of March in 2020. From the NBA season suspension on March 11th to the Ontario declaration of state of emergency by Doug Ford on the 17th, all gathering activities started to shut down to mitigate the impacts of the virus on the city (CityNews XX). This is soon followed by the mandated closure of non-essential businesses and the law to ensure a 2 meter distance between people in public places punishable by fines (CityNews XX). As individuals naturally crave in-person contact and outdoor activities, many studies have reported psychological distress relating to anxiety, depression, or general lack of interest in anything throughout the progression of the lock-down (Library of Medicine). In conjunction with psychological distress, it is important to analyse whether the lock-down also correlates with suicide-related incidents in order to better understand the extent that of not only an involuntary secluded lifestyle, but also other effects of COVID-19 such as unemployment and the death of a family member that can negatively impact an individual's well-being.
 
-Knowing the correlation between the lock-down and attempted suicide calls for service attended can also help policy makers know how to better prepare and provide mental health support during a nation-wide crisis. A survey conducted on COVID-19 and mental health (SCMH) have shown that one in four Canadians aged 18 and older indicates symptoms of depression, anxiety, and post-traumatic disorder (PTSD) (The Daily). Furthermore, between fall 2020 and spring 2021, symptoms of mental health disorder increased (The Daily). On the other hand, there are studies that reported no significant difference in suicide ideation in Canada between 2019 and 2020 (HPCDP). These research results stem from complicated factors and are time-limited in their analysis. The relation between the COVID-19 lock-down and mental health consequences can be further explored with an analysis that emphasizes the lock-down months between March 2020 to March 2021 as well as looking at the more long-term mental health fluctuations. 
+Knowing the correlation between the lock-down and suicide-related calls for service attended can also help policy makers know how to better prepare and provide mental health support during a nation-wide crisis. A survey conducted on COVID-19 and mental health (SCMH) has shown that one in four Canadians aged 18 and older indicates symptoms of depression, anxiety, and post-traumatic disorder (PTSD) (The Daily). Furthermore, between fall 2020 and spring 2021, symptoms of mental health disorder increased (The Daily). On the other hand, there are studies that reported no significant difference in suicide ideation - adf - in Canada between 2019 and 2020 (HPCDP). These research results stem from complicated factors and are time-limited in their analysis. The relation between the COVID-19 lock-down and mental health consequences can be further explored with an analysis that emphasizes the lock-down months between March 2020 to March 2021 as well as looking at the more long-term mental health fluctuations ().
 
-Among present research there is a lack of analysis in the correlation between the lock-down to attempted suicide calls for service attended focusing in Toronto. This paper will estimate the monthly average attempted suicide CFSA in Toronto and compare between years, and more specifically, the lock-down period.You can and should cross-reference sections and sub-sections.
+Among present research there is a lack of analysis in the correlation between the lock-down to suicide-related calls for service attended focusing in Toronto. This paper will estimate the monthly average attempted suicide CFSA in Toronto and compare between years, and more specifically, the lock-down period. You can and should cross-reference sections and sub-sections.
 
 The remainder of this paper is structured as follows. @sec-data....
 
 # Data {#sec-data}
+
+## Data source and collection {data-source}
+
+The data used in this analysis - Persons in Crisis (PIC) Calls for Service Attended (CFSA) - is sourced from Toronto's Open Data Portal. The data was accessed through R using the 'opendatatoronto' package (Gelfand). The CFSA is collected by the Toronto Police Service (TPS) and includes events attended by an officer from the TPS. However, the data does not include events attended by members in Parking, Marine, Court or Primary Report Intake and Management and Entry. It is refreshed monthly with the last update on January 11th, 2024 on the Open Data Portal.
+
+Although the TPS is a trustworthy source, the methodology of data collection contains flaws that decrease the reliability of the data. For instance, while not used in this analysis, the location at which the events take place provided in the data is not precise to protect the privacy of the person in crisis. The data set may further contain bias in analyzing the frequency for suicide-related cases as some calls may not have been picked up by officers for various reasons. An officer also may not be dispatched for some calls which means the calls recorded may also not be accurate to actual suicide-related incident numbers. Additionally, some cases may not call for the Toronto Police Service in the first place. While these occurrences are likely to under-represent the frequency of CFSA for the type suicide-related, in contrast, some attended calls may have been unnecessary which may have inflated the data. These issues pose to be inaccuracies for this data.
+
+## Exploring the data
+
+
+The raw data downloaded includes 291991 observations with 16 variables. The cleaning process keeps only four as they are relevant to the analysis and describe a different aspect of the CFSA. Event month and event year differentiate the data through time periods. Event type is also kept although it contains only type "Suicide-related" after cleaning. The website from which the data was downloaded claims to have six event types: Attempt Suicide, Person in Crisis, Elopee, Jumper, Overdose and Threaten Suicide (). However, the downloaded data shows that events are split into three types: Suicide-related, Overdose, and Person in Crisis. Assuming overdose maps to overdose, person in crises includes person in crises and elopee, suicide-related data is then comprised of attempted suicide, jumper, and threaten suicide data. Occurrence created documents whether a occurrence report is filed which signifies an activity that has been entered into police records management systems. This confirms a more serious injury or incident from suicide-related cases.
 
 Some of our data is of penguins (@fig-bills), from @palmerpenguins.
 
@@ -71,34 +82,6 @@ analysis_data |>
 ```
 
 Talk way more about it.
-
-# Model
-
-The goal of our modelling strategy is twofold. Firstly,...
-
-Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in [Appendix -@sec-model-details].
-
-## Model set-up
-
-Define $y_i$ as the number of seconds that the plane remained aloft. Then $\beta_i$ is the wing width and $\gamma_i$ is the wing length, both measured in millimeters.
-
-```{=tex}
-\begin{align} 
-y_i|\mu_i, \sigma &\sim \mbox{Normal}(\mu_i, \sigma) \\
-\mu_i &= \alpha + \beta_i + \gamma_i\\
-\alpha &\sim \mbox{Normal}(0, 2.5) \\
-\beta &\sim \mbox{Normal}(0, 2.5) \\
-\gamma &\sim \mbox{Normal}(0, 2.5) \\
-\sigma &\sim \mbox{Exponential}(1)
-\end{align}
-```
-We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use the default priors from `rstanarm`.
-
-### Model justification
-
-We expect a positive relationship between the size of the wings and time spent aloft. In particular...
-
-We can use maths by including latex between dollar signs, for instance $\theta$.
 
 # Results
 
@@ -161,27 +144,6 @@ Weaknesses and next steps should also be included.
 In @fig-ppcheckandposteriorvsprior-1 we implement a posterior predictive check. This shows...
 
 In @fig-ppcheckandposteriorvsprior-2 we compare the posterior with the prior. This shows...
-
-```{r}
-#| eval: true
-#| echo: false
-#| message: false
-#| warning: false
-#| label: fig-ppcheckandposteriorvsprior
-#| layout-ncol: 2
-#| fig-cap: "Examining how the model fits, and is affected by, the data"
-#| fig-subcap: ["Posterior prediction check", "Comparing the posterior with the prior"]
-
-pp_check(first_model) +
-  theme_classic() +
-  theme(legend.position = "bottom")
-
-posterior_vs_prior(first_model) +
-  theme_minimal() +
-  scale_color_brewer(palette = "Set1") +
-  theme(legend.position = "bottom") +
-  coord_flip()
-```
 
 ## Diagnostics
 

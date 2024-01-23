@@ -16,13 +16,14 @@ library(janitor)
 raw <- read_csv("inputs/data/raw_toronto_cfsa.csv")
 
 ## Trimming data ##
-clean_toronto_cfsa <- raw |> clean_names() |> 
-  select(event_year, event_month, event_type) |> 
-  filter(event_year > 2018 & event_year < 2022)
+toronto_cfsa <- raw |> clean_names() |> 
+  select(event_year, event_month, event_type, occurrence_created) |> 
+  filter(event_year > 2018 & event_year < 2022) |>
+  filter(event_type == "Suicide-related")
 
 ## Adding Variables ##
 # Need indicator variable to specify lock_down months
-clean_toronto_cfsa <- clean_toronto_cfsa |>
+toronto_cfsa <- toronto_cfsa |>
   mutate(lock_down = ifelse((event_year == 2020 & (
     event_month != "January" & event_month != "February") | (
       event_year == 2021 & (
@@ -30,4 +31,4 @@ clean_toronto_cfsa <- clean_toronto_cfsa |>
 
 
 #### Save data ####
-write_csv(clean_toronto_cfsa, "outputs/data/toronto_cfsa")
+write_csv(toronto_cfsa, "outputs/data/toronto_cfsa.csv")

@@ -1,6 +1,7 @@
 #### Preamble ####
 # Purpose: Downloads the Persons in Crisis Calls for Service Attended data from
-# Open Data Toronto and saves in inputs.
+# Open Data Toronto and saves in inputs. Data recorded and published by the
+# Toronto Police Service.
 # Author: Tracy Yang
 # Date: 23 January 2024
 # Contact: ycart.yang@mail.utoronto.ca
@@ -23,5 +24,4 @@ raw_toronto_cfsa <-
 
 #### Save data ####
 write_csv(raw_toronto_cfsa, "inputs/data/raw_toronto_cfsa.csv") 
-
          

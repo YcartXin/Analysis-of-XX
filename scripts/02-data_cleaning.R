@@ -2,7 +2,7 @@
 # Purpose: Cleans the raw person in crisis calls for service attended data 
 # recorded and published by the Toronto Police Service on Open Data Toronto.
 # Author: Tracy Yang
-# Date: 23rd Janaury 2024
+# Date: 23 January 2024
 # Contact: ycart.yang@mail.utoronto.ca
 # License: MIT
 # Pre-requisites: 01-download_data.R

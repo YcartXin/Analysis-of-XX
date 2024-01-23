@@ -2,11 +2,13 @@
 
 ## Overview
 
-This repo provides students with a foundation for their own projects associated with *Telling Stories with Data*. You do not need every aspect for every paper and you should delete aspects that you do not need.
+The analysis is conducted through Posit Cloud using "R version 4.3.2 (2023-10-31)
+
+The data used in this analysis - Persons in Crisis (PIC) Calls for Service Attended (CFSA) - is sourced from Toronto's Open Data Portal. The data was accessed through R using the 'opendatatoronto' package with no restrictions needed for access.
 
 To use this folder, click the green "Code" button", then "Download ZIP". Move the downloaded folder to where you want to work on your own computer, and then modify it to suit.
 
-Large Language Models are not used in the writing of this analysis.
+** Statement on LLM usage: Large Language Models are not used in the writing of any code nor analysis.
 
 ## File Structure
 

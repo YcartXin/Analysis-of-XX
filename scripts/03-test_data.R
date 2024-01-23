@@ -18,7 +18,7 @@ toronto_cfsa$event_type |> unique() |> length() == 1
 
 ## Test event_month ##
 toronto_cfsa$event_month |> unique() |> length() == 12
-toronto_cfsa$event_month |> class() == "character"
+toronto_cfsa$event_month |> class() == "integer"
 
 ## Test event_year ##
 toronto_cfsa$event_year |> is.numeric()

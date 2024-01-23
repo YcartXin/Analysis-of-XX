@@ -21,16 +21,14 @@ toronto_cfsa <- raw |> clean_names() |>
   filter(event_year > 2018 & event_year < 2022) |>
   filter(event_type == "Suicide-related")
 
-## Adding Variables ##
-# Need indicator variable to specify lock_down months
-toronto_cfsa <- toronto_cfsa |>
-  mutate(lock_down = ifelse((event_year == 2020 & (
-    event_month != "January" & event_month != "February") | (
-      event_year == 2021 & (
-        event_month == "January" | event_month == "February"))), 1, 0))
 # Making date variable to differentiate months between different years
 toronto_cfsa$event_month <- match(toronto_cfsa$event_month, month.name)
 toronto_cfsa$date <- make_date(toronto_cfsa$event_year, toronto_cfsa$event_month)
+
+## Adding Variables ##
+# Need indicator variable to specify lock_down affected months
+toronto_cfsa <- toronto_cfsa |>
+  mutate(lock_down = ifelse(ymd(date) >= ymd(20200401) & ymd(date) <= ymd(20210501), 1, 0))
 
 
 #### Save data ####

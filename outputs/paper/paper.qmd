@@ -3,7 +3,7 @@ title: "Analysis of the Effect of COVID-19 Lockdown on Suicide-related Calls for
 author: 
   - Tracy Yang
 thanks: "Code and data are available at: https://github.com/YcartXin/Effect-of-COVID-Lockdown-on-Attempted-Suicide-CFSA-Analysis."
-date: today
+date: 01/23/2024
 date-format: long
 abstract: "With the closing of non-essential businesses and the increased social restrictions of the COVID-19 pandemic from March 2020 in Toronto, many Canadian's mental health were reported to have been affected negatively. This analysis seeks to find a correlation between the COVID-19 lock-down and the suicide-related calls for service attended (CFSA) in Toronto due to the psychological distress incited by the lock-down. However, although the frequency of suicide-related CFSAs increased during the lock-down period, the analysis does not show a strong correlation between the two variables, especially when compared to pre-pandemic frequencies. This signifies that the lock-down was not an important motivation for suicide-related incidents in Toronto during the pandemic period."
 format: pdf
@@ -31,6 +31,8 @@ The effects of the COVID-19 pandemic began to reach the citizens of Toronto thro
 Knowing the correlation between the lock-down and suicide-related calls for service attended can also help policy makers know how to better prepare and provide mental health support during a nation-wide crisis. A survey conducted on COVID-19 and mental health (SCMH) has shown that one in four Canadians aged 18 and older indicates symptoms of depression, anxiety, and post-traumatic disorder (PTSD) (@Statistics). Furthermore, between fall 2020 and spring 2021, symptoms of mental health disorder increased (@Statistics). On the other hand, there are studies that reported no significant difference in suicide ideation - having suicidal thoughts - in Canada between 2019 and 2020 (@Liu). These research results stem from complicated factors and are time-limited in their analysis. The relation between the COVID-19 lock-down and mental health consequences can be further explored with an analysis that emphasizes the lock-down months between March 2020 to March 2021 as well as looking at the more long-term mental health fluctuations.
 
 Among present research there is a lack of analysis in the correlation between the lock-down to suicide-related calls for service attended focusing in Toronto. This paper will estimate the monthly average attempted suicide CFSA in Toronto and compare between years, and more specifically, the lock-down period. This analysis will be carried out in **R** (@citeR) using packages **tidyverse** (@tidyverse), **knitr** (@knitr), **dplyr** (@dplyr), **ggplot2** (@ggplot2), **knitr** (@knitr), and **janitor** (@janitor). The remainder of this paper is structured as follows. @sec-data will include the source and data collection process for the analysis as well as the exploring of the cleaned data. Data source and collection in @sec-data will explain the background of the source, how the data was collected, and potential biases within the data. The following section Exploring the data will explain the cleaned data and use different graphs to investigate whether there is a correlation between the lock-down and suicide related CFSAs.
+
+The overall analysis shows that there is no strong correlation between suicide-related calls for service attended and the COVID-19 lock-down. With this information, more research can be conducted on the reasons to declining mental health but a decrease in suicide-related CFSA. Policy makers can also better weigh the impact of lock-down policies for any necessity in the future.
 
 
 # Data {#sec-data}
@@ -96,10 +98,10 @@ toronto_cfsa |> filter(occurrence_created == "Yes") |>
   theme_minimal() + labs(x = "Time", y = "Monthly Frequency of Suicide-related CFSA") + 
   scale_colour_brewer(palette = "Set1") + theme(legend.position = "bottom")
 ```
-@fig-occ includes only the CFSA where an occurrence report is filed which confirms the data to be more reliable. @fig-occ provides more clarity to a trend of a surge in occurrence filed CFSAs between 2019 to 2020, a short fall in the beginning of 2020, and then another surge between mid-2020 to 2022. The number of suicide-related calls with occurrence created increased since the lock-down in 2020 and has no indication of a decrease even after the lock-down period ended. This graph suggests that the beginning of the lock-down saw a decrease in suicide-related calls for service attended. Overtime, the frequency of the CFSA with an occurrence report filed increased until even after the lock-down ended. This correlation is relatively clear and the post-pandemic frequency surpasses the pre-pandemic suicide-related CFSAs with occurrence report.
+@fig-occ includes only the CFSA where an occurrence report is filed which confirms the data to be more reliable. @fig-occ provides more clarity to a trend of a surge in occurrence filed CFSAs between 2019 to 2020, a short fall in the beginning of 2020, and then another surge between mid-2020 to 2022. The number of suicide-related calls with occurrence created increased since the lock-down in 2020 and has no indication of a decrease even after the lock-down period ended. This graph suggests that the beginning of the lock-down saw a decrease in suicide-related calls for service attended. Overtime, the frequency of the CFSA with an occurrence report filed increased until even after the lock-down ended. This correlation is relatively clear and the post-pandemic frequency surpasses the pre-pandemic suicide-related CFSAs with occurrence report. However, the overall trend is not clear as the beginning of the lock-down saw a decrease in CFSA frequency.
 
 
-#
 \newpage
+
 
 # References

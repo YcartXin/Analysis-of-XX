@@ -15,9 +15,12 @@ bibliography: references.bib
 #| include: false
 #| warning: false
 #| message: false
+#install.packages("tidyverse")
 #install.packages("knitr")
+#install.packages("rmarkdown")
 library(tidyverse)
 library(knitr)
+library(rmarkdown)
 toronto_cfsa <-
   read_csv(
     file = "/cloud/project/outputs/data/toronto_cfsa.csv"
@@ -101,7 +104,7 @@ toronto_cfsa |> filter(occurrence_created == "Yes") |>
 @fig-occ includes only the CFSA where an occurrence report is filed which confirms the data to be more reliable. @fig-occ provides more clarity to a trend of a surge in occurrence filed CFSAs between 2019 to 2020, a short fall in the beginning of 2020, and then another surge between mid-2020 to 2022. The number of suicide-related calls with occurrence created increased since the lock-down in 2020 and has no indication of a decrease even after the lock-down period ended. This graph suggests that the beginning of the lock-down saw a decrease in suicide-related calls for service attended. Overtime, the frequency of the CFSA with an occurrence report filed increased until even after the lock-down ended. This correlation is relatively clear and the post-pandemic frequency surpasses the pre-pandemic suicide-related CFSAs with occurrence report. However, the overall trend is not clear as the beginning of the lock-down saw a decrease in CFSA frequency.
 
 
-\\newpage
+\newpage
 
 
 # References

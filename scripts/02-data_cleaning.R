@@ -8,6 +8,7 @@
 # Pre-requisites: 01-download_data.R
 
 #### Workspace setup ####
+install.packages("janitor")
 library(tidyverse)
 library(janitor)
 

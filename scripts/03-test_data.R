@@ -12,9 +12,6 @@
 library(tidyverse)
 
 #### Test data ####
-## Test event_type##
-toronto_cfsa$event_type |> unique() == c("Suicide-related")
-toronto_cfsa$event_type |> unique() |> length() == 1
 
 ## Test event_month ##
 toronto_cfsa$event_month |> unique() |> length() == 12

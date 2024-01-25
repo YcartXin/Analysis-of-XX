@@ -8,7 +8,7 @@
 # Pre-requisites: 01-download_data.R
 
 #### Workspace setup ####
-install.packages("janitor")
+#install.packages("janitor")
 library(tidyverse)
 library(janitor)
 
@@ -18,9 +18,9 @@ raw <- read_csv("inputs/data/raw_toronto_cfsa.csv")
 
 ## Trimming data ##
 toronto_cfsa <- raw |> clean_names() |> 
-  select(event_year, event_month, event_type, occurrence_created) |> 
-  filter(event_year > 2018 & event_year < 2022) |>
-  filter(event_type == "Suicide-related")
+  filter(event_type == "Suicide-related") |>
+  select(event_year, event_month, occurrence_created) |> 
+  filter(event_year > 2018 & event_year < 2022)
 
 # Making date variable to differentiate months between different years
 toronto_cfsa$event_month <- match(toronto_cfsa$event_month, month.name)

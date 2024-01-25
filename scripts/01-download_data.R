@@ -12,7 +12,7 @@
 
 
 #### Workspace setup ####
-#install.package("opendatatoronto")
+#install.packages("opendatatoronto")
 library(opendatatoronto)
 library(tidyverse)
 library(dplyr)

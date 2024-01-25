@@ -105,7 +105,7 @@ toronto_cfsa |> filter(lock_down == 1) |>
 #| label: fig-occ
 #| fig-cap: Monthly Frequency of Suicide-related CFSA with Occurrence Filed 2019 - 2021
 toronto_cfsa |> filter(occurrence_created == "Yes") |>
-  count(date) |>
+  count(date, lock_down) |>
   ggplot(aes(x = date, y = n)) + geom_point() + 
   theme_minimal() + labs(x = "Months", y = "Monthly Frequency of Suicide-related CFSA") + 
   scale_colour_brewer(palette = "Set1") + theme(legend.position = "bottom")
